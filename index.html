@@ -1,0 +1,22 @@
+<html>
+	<head><title>TheLowPopup</title></head>
+	<body>
+		<h1>The Low [非公式] ポップアップガイド</h1>
+		<h3>このツールについて</h3>
+		<p>小型のウィンドウでDynMap(フィールドマップ)やWikiを表示するツールです．Minecraftの画面の上にかぶせて表示することで，ミニマップのように使うことができます．</p>
+		<h3>注意事項</h3>
+		<p>本プログラムはブラウザ上で動作します．利用時にはjavascriptを有効にして下さい．<br />ホスティングはGithub Pagesで行われています．ソースコードは本サイトのリポジトリ「<a href="https://github.com/kajimoto-syu/TheLowPopupGuide">kajimoto-syu/TheLowPopupGuide</a>」を確認下さい．<br />恐らくDynMapの仕様で，トラッキングできるMCIDはログイン中のアカウントに限定されるようです．ログイン中の他人のトラッキングは出来ないようですので注意して下さい．</p>
+		<h3>使い方</h3>
+		<p>
+			下の「ポップアップガイド起動」ボタンを押して下さい．現在，ユーザのトラッキング機能のみ実装されています．GPSのアイコンをクリックすることで，追跡機能をON/OFFすることが出来ます．追跡対象はMCIDで指定する必要が有ります．GPSアイコンにカーソルを持っていくと「Steve」という文字が表示されるので，こちらをクリックして自身のMCIDを入力して下さい．
+		</p>
+		<h3>⇣起動⇣</h3>
+		<button value="TheLow Map" onclick="popMap()">ポップアップガイド起動</button>
+		<script language="JavaScript">
+		function popMap(){
+			// プレイヤー追従設定
+			w = window.open("./map.html","Newwindow","width=280,height=480");
+		}
+		</script>
+	</body>
+</html>
