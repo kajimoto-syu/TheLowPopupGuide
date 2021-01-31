@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<title>TheLow (MapPopup)</title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			.overridingMapButton{
+				transition:1s;
+				opacity:0.7;
+			}
+			#MenuOverrideMap{
+				position:fixed;
+				right:20px;
+				bottom:20px;
+				background-color: #FFFFFF;
+				padding: 5px;
+				border-radius: 20px;
+			}
+			
+			#trackingMCIDTd{
+				display: inline-block;
+				padding: 0;
+				visibility: collapse;
+				width: 0;
+				opacity: 0;
+				transition: all 0.5s ease;
+			}
+			#MenuOverrideMap:hover table tr td#trackingMCIDTd {
+				visibility: visible;
+				width: 100px;
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- http://thelow.eximradar.jp/ -->
+		<iframe id="mapIframe"  name="mapIframe" style="height: 100%;width: 100%; border: 0;"></iframe>
+		<div id="MenuOverrideMap">
+			<table>
+				<tr>
+					<td id="trackingMCIDTd" onclick="setTrackingMCID();" style="pointer-events: auto;">
+						<span id="trackingMCID" style="padding-left: 5px;pointer-events: none;">kajimoto_syu</span>
+					</td>
+					<td id="trackingToggleTd" onclick="trackingToggle();" style="pointer-events: auto;">
+						<img id="trackingToggle" class="overridingMapButton" style="pointer-events: none;" src="./gpsOff.svg" />
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+		<script language="JavaScript">
+		function setTrackingMCID(){
+
+			responce = window.prompt("【ユーザ追跡】\nMCIDを入力すると，マップが自動でユーザを追跡してくれます．", targetMCID);
+
+			if(!responce){
+				return;
+			}
+
+			targetMCID = responce;
+			trackingToggleVal = true;
+			document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
+			document.getElementById("trackingToggle").src = "./gpsOn.svg"
+			document.getElementById("trackingMCID").innerText = targetMCID;
+		}
+		function trackingToggle(){
+			trackingToggleVal = !trackingToggleVal;
+			if(trackingToggleVal){
+				document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
+				document.getElementById("trackingToggle").src = "./gpsOn.svg";
+			}else{
+				document.mapIframe.location.href = "http://thelow.eximradar.jp/";
+				document.getElementById("trackingToggle").src = "./gpsOff.svg";
+			}
+		}
+		function getQueryString(){
+			var result = {};
+			if( 1 < window.location.search.length ){
+				// 最初の1文字 (?記号) を除いた文字列を取得する
+				var query = window.location.search.substring( 1 );
+
+				// クエリの区切り記号 (&) で文字列を配列に分割する
+				var parameters = query.split( '&' );
+
+				for( var i = 0; i < parameters.length; i++ ){
+					// パラメータ名とパラメータ値に分割する
+					var element = parameters[ i ].split( '=' );
+
+					var paramName = decodeURIComponent( element[ 0 ] );
+					var paramValue = decodeURIComponent( element[ 1 ] );
+
+					// パラメータ名をキーとして連想配列に追加する
+					result[ paramName ] = paramValue;
+				}
+			}
+			return result;
+		}
+		
+		window.onload = function(){
+			var _get = getQueryString()
+			if ("targetMCID" in _get) {
+				trackingToggleVal = true;
+				targetMCID = _get["targetMCID"];
+				document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
+				document.getElementById("trackingToggle").src = "./gpsOn.svg";
+			} else {
+				trackingToggleVal = false;
+				targetMCID = 'Steve';
+				document.mapIframe.location.href = "http://thelow.eximradar.jp/";
+				document.getElementById("trackingToggle").src = "./gpsOff.svg";
+			}
+			document.getElementById("trackingMCID").innerText = targetMCID;
+		}
+		</script>
+	</body>
+</html>
