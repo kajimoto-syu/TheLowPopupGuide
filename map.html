@@ -6,11 +6,25 @@
 				margin: 0;
 				padding: 0;
 			}
-			.overridingMapButton{
+
+			#topBar{
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				z-index: 10;
+			}
+
+			.actionButton{
 				transition:1s;
 				opacity:0.7;
+				background-color: #FFFFFF;
+				padding: 5px;
+				border-radius: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
-			#MenuOverrideMap{
+			#bottomBar{
 				position:fixed;
 				right:20px;
 				bottom:20px;
@@ -27,30 +41,86 @@
 				opacity: 0;
 				transition: all 0.5s ease;
 			}
-			#MenuOverrideMap:hover table tr td#trackingMCIDTd {
+			#bottomBar:hover table tr td#trackingMCIDTd {
 				visibility: visible;
 				width: 100px;
 				opacity: 1;
+			}
+
+			#suggest {
+				position: absolute;
+				background-color: #FFFFFF;
+				border: 1px solid #CCCCFF;
+				font-size: 90%;
+				width: 200px;
+			}
+			#suggest div {
+				display: block;
+				width: 200px;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+			#suggest div.select{ /* キー上下で選択した場合のスタイル */
+				color: #FFFFFF;
+				background-color: #3366FF;
+			}
+			#suggest div.over{ /* マウスオーバ時のスタイル */
+				background-color: #99CCFF;
 			}
 		</style>
 	</head>
 	<body>
 		<!-- http://thelow.eximradar.jp/ -->
 		<iframe id="mapIframe"  name="mapIframe" style="height: 100%;width: 100%; border: 0;"></iframe>
-		<div id="MenuOverrideMap">
+		<div id="topBar">
+			<table>
+				<tr>
+					<td>
+						<div class="actionButton">
+							<input type="text" id="searchInput" style="width: 200px;margin-left: 10px; border: 0;outline: 0;" placeholder="検索(ダンジョン・街・クエストetc.)" />
+							<img style="margin: 0 10px;" src="./src/ui/search.svg" onclick="searchByWiki();"/>
+						</div>
+					</td>
+					<td>
+						<div class="actionButton" onclick="initProcess();">
+							<img style="pointer-events: none;" src="./src/ui/map.svg" />
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div id="suggest" style="display:none;margin-left: 20px;"></div>
+		</div>
+		<div id="bottomBar" class="actionButton">
 			<table>
 				<tr>
 					<td id="trackingMCIDTd" onclick="setTrackingMCID();" style="pointer-events: auto;">
 						<span id="trackingMCID" style="padding-left: 5px;pointer-events: none;">kajimoto_syu</span>
 					</td>
 					<td id="trackingToggleTd" onclick="trackingToggle();" style="pointer-events: auto;">
-						<img id="trackingToggle" class="overridingMapButton" style="pointer-events: none;" src="./gpsOff.svg" />
+						<img id="trackingToggle" style="pointer-events: none;" src="./src/ui/gpsOff.svg" />
 					</td>
 				</tr>
 			</table>
 			
 		</div>
+		
+		<script src="info/wikiPages.js"></script>
+		<script src="js/suggest.js"></script>
 		<script language="JavaScript">
+
+		function startSuggest() {
+		new Suggest.Local(
+				"searchInput",    // 入力のエレメントID
+				"suggest", // 補完候補を表示するエリアのID
+				wikiPageList,      // 補完候補の検索対象となる配列
+				{dispMax: 10, interval: 1000}); // オプション
+		}
+
+		window.addEventListener ?
+		window.addEventListener('load', startSuggest, false) :
+		window.attachEvent('onload', startSuggest);
+
+
 		function setTrackingMCID(){
 
 			responce = window.prompt("【ユーザ追跡】\nMCIDを入力すると，マップが自動でユーザを追跡してくれます．", targetMCID);
@@ -60,19 +130,20 @@
 			}
 
 			targetMCID = responce;
+			localStorage.setItem("targetMCID", targetMCID);
 			trackingToggleVal = true;
 			document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
-			document.getElementById("trackingToggle").src = "./gpsOn.svg"
+			document.getElementById("trackingToggle").src = "./src/ui/gpsOn.svg"
 			document.getElementById("trackingMCID").innerText = targetMCID;
 		}
 		function trackingToggle(){
 			trackingToggleVal = !trackingToggleVal;
 			if(trackingToggleVal){
 				document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
-				document.getElementById("trackingToggle").src = "./gpsOn.svg";
+				document.getElementById("trackingToggle").src = "./src/ui/gpsOn.svg";
 			}else{
 				document.mapIframe.location.href = "http://thelow.eximradar.jp/";
-				document.getElementById("trackingToggle").src = "./gpsOff.svg";
+				document.getElementById("trackingToggle").src = "./src/ui/gpsOff.svg";
 			}
 		}
 		function getQueryString(){
@@ -97,21 +168,45 @@
 			}
 			return result;
 		}
-		
-		window.onload = function(){
-			var _get = getQueryString()
+
+		function searchByWiki(){
+			var q = document.getElementById("searchInput").value;
+			document.mapIframe.location.href = "https://wikiwiki.jp/thelow/"+q;
+		}
+
+		function initProcess(){
+			var _get = getQueryString();
 			if ("targetMCID" in _get) {
 				trackingToggleVal = true;
 				targetMCID = _get["targetMCID"];
 				document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
-				document.getElementById("trackingToggle").src = "./gpsOn.svg";
+				document.getElementById("trackingToggle").src = "./src/ui/gpsOn.svg";
+			} else if (localStorage.getItem("targetMCID")){
+				trackingToggleVal = true;
+				targetMCID = localStorage.getItem("targetMCID");
+				document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
+				document.getElementById("trackingToggle").src = "./src/ui/gpsOn.svg";
 			} else {
 				trackingToggleVal = false;
 				targetMCID = 'Steve';
 				document.mapIframe.location.href = "http://thelow.eximradar.jp/";
-				document.getElementById("trackingToggle").src = "./gpsOff.svg";
+				document.getElementById("trackingToggle").src = "./src/ui/gpsOff.svg";
 			}
 			document.getElementById("trackingMCID").innerText = targetMCID;
+
+			document.getElementById("searchInput").onkeypress = (e) => {
+				// form1に入力されたキーを取得
+				const key = e.keyCode || e.charCode || 0;
+				// 13はEnterキーのキーコード
+				if (key == 13) {
+					searchByWiki();
+					e.preventDefault();
+				}
+			}
+		}
+		
+		window.onload = function(){
+			initProcess();
 		}
 		</script>
 	</body>
