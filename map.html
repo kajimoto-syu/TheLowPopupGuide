@@ -16,7 +16,7 @@
 
 			.actionButton{
 				transition:1s;
-				opacity:0.7;
+				opacity:0.9;
 				background-color: #FFFFFF;
 				padding: 5px;
 				border-radius: 20px;
@@ -80,15 +80,24 @@
 							<input type="text" id="searchInput" style="width: 200px;margin-left: 10px; border: 0;outline: 0;" placeholder="検索(ダンジョン・街・クエストetc.)" />
 							<img style="margin: 0 10px;" src="./src/ui/search.svg" onclick="searchByWiki();"/>
 						</div>
+						<div id="suggest" style="position:absolute;display:none;margin-left: 20px;"></div>
 					</td>
 					<td>
-						<div class="actionButton" onclick="initProcess();">
+						<div class="actionButton" style="margin-left:5px;" onclick="initProcess();">
 							<img style="pointer-events: none;" src="./src/ui/map.svg" />
 						</div>
 					</td>
 				</tr>
+					<tr>
+						<td></td>
+						<td>
+							<div class="actionButton" style="margin-left:5px;" onclick="goTo('./how-to-use.html');">
+								<img style="pointer-events: none;" src="./src/ui/question.svg" />
+							</div>
+						</td>
+					</tr>
 			</table>
-			<div id="suggest" style="display:none;margin-left: 20px;"></div>
+			
 		</div>
 		<div id="bottomBar">
 			<table>
@@ -107,6 +116,8 @@
 		<script src="info/wikiPages.js"></script>
 		<script src="js/suggest.js"></script>
 		<script language="JavaScript">
+		
+		var mapIframe = frames[0];
 
 		function startSuggest() {
 		new Suggest.Local(
@@ -132,17 +143,17 @@
 			targetMCID = responce;
 			localStorage.setItem("targetMCID", targetMCID);
 			trackingToggleVal = true;
-			document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
+			mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
 			document.getElementById("trackingToggle").src = "./src/ui/gpsOn.svg"
 			document.getElementById("trackingMCID").innerText = targetMCID;
 		}
 		function trackingToggle(){
 			trackingToggleVal = !trackingToggleVal;
 			if(trackingToggleVal){
-				document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
+				mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
 				document.getElementById("trackingToggle").src = "./src/ui/gpsOn.svg";
 			}else{
-				document.mapIframe.location.href = "http://thelow.eximradar.jp/";
+				mapIframe.location.href = "http://thelow.eximradar.jp/";
 				document.getElementById("trackingToggle").src = "./src/ui/gpsOff.svg";
 			}
 		}
@@ -171,7 +182,11 @@
 
 		function searchByWiki(){
 			var q = document.getElementById("searchInput").value;
-			document.mapIframe.location.href = "https://wikiwiki.jp/thelow/"+q;
+			mapIframe.location.href = "https://wikiwiki.jp/thelow/"+q;
+		}
+
+		function goTo(url){
+			mapIframe.location.href = url;
 		}
 
 		function initProcess(){
@@ -179,17 +194,17 @@
 			if ("targetMCID" in _get) {
 				trackingToggleVal = true;
 				targetMCID = _get["targetMCID"];
-				document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
+				mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
 				document.getElementById("trackingToggle").src = "./src/ui/gpsOn.svg";
 			} else if (localStorage.getItem("targetMCID")){
 				trackingToggleVal = true;
 				targetMCID = localStorage.getItem("targetMCID");
-				document.mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
+				mapIframe.location.href = "http://thelow.eximradar.jp/?playername=" + targetMCID;
 				document.getElementById("trackingToggle").src = "./src/ui/gpsOn.svg";
 			} else {
 				trackingToggleVal = false;
 				targetMCID = 'Steve';
-				document.mapIframe.location.href = "http://thelow.eximradar.jp/";
+				mapIframe.location.href = "http://thelow.eximradar.jp/";
 				document.getElementById("trackingToggle").src = "./src/ui/gpsOff.svg";
 			}
 			document.getElementById("trackingMCID").innerText = targetMCID;

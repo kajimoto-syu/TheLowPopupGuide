@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>使い方 | Thelow非公式ポップアップツール</title>
+        <link rel="stylesheet" href="./css/common.css">
+    </head>
+    <body>
+        <a id="returnLink" href="./index.html">TOPページへもどる</a>
+        <script language="JavaScript">
+            // 自分自身が親(iframeで読み込まれていない場合)
+            if(window != window.parent) {
+                document.getElementById('returnLink').href = 'http://thelow.eximradar.jp/';
+                document.getElementById('returnLink').innerHTML = 'マップへ戻る';
+            }
+        </script>
+        <h1>使い方 | The Low [非公式] ポップアップガイド</h1>
+        <h3>機能一覧・使い方</h3>
+		<div class="grad-wrap">
+			<input id="trigger1" class="grad-trigger" type="checkbox">
+			<label class="grad-btn grad-btn-style" for="trigger1"></label>
+			<div class="grad-item">
+				<p>
+					現在以下の機能が実装されています．
+					<ul>
+						<li>現在地追跡機能(画面右下GPSアイコン)
+							<ul>
+								<li>GPSアイコンが青色に光っているときは，マップが自動的にプレイヤーを追跡します．</li>
+								<li>GPSアイコンが光っていないときは，自由にマップを見ることが出来ます．つまり，追跡中はマップを動かすことが出来ません(ズームは可)．</li>
+								<li>GPSアイコンクリックで追跡するかを切り替えることが出来ます．<br /><br /></li>
+							</ul>
+						</li>
+						<li>現在地追跡機能 - 初期設定(画面右下GPSアイコン)
+							<ul>
+								<li>初回・ないしMCIDを変更した場合は，設定が必要です．</li>
+								<li>アイコンにカーソルを持っていくと，MCIDが右に表示されます．(デフォルトはSteve)</li>
+								<li>この文字をクリックすると，追跡するMCIDを変更するダイアログが表示されます．</li>
+								<li>自身のMCIDを設定することで，追跡機能を使うことが出来ます．<br /><br /></li>
+							</ul>
+						</li>
+						<li>検索機能(画面右上)
+							<ul>
+								<li>（※この機能は改修予定です）</li>
+								<li>検索バーに公式wikiのページ名を入れて検索アイコンを押すと．該当wikiページに飛ばしてくれます．</li>
+								<li>wikiページはサジェストから探すことが可能です．</li>
+								<li>wikiページから戻りたいときは，検索バー右のマップアイコンを押すことで戻れます．<br /><br /></li>
+							</ul>
+						</li>
+					</ul>
+				</p>
+			</div>
+		</div>
+		<br /><br />
+		<h3>トラブルシュート(困った人はこちらへ)</h3>
+
+		<div class="grad-wrap">
+			<input id="trigger2" class="grad-trigger" type="checkbox">
+			<label class="grad-btn grad-btn-style" for="trigger2"></label>
+			<div class="grad-item">
+				<p>
+					<ul>
+						<li>現在地追跡機能でトラッキングが出来ない<ul>
+							<li>初めて使う場合やMCIDが変わった場合は，初期設定を行う必要があります．<br /> => 詳しくは使い方セクションへ！</li>
+							<li>自分以外のプレイヤーはトラッキング出来ないようです．(Thelow公式が公開しているDynmapの仕様)</li>
+							<li>スマホだとMCIDの指定がやりにくいです(´・ω・｀)<br /><br /></li>
+						</ul></li>
+						<li>"Service Unavailable"が出る<ul>
+							<li>Thelowサーバ再起動中はマップの利用が出来ません．5分ほど時間を空けてアクセスしてみて下さい<br /><br /></li></ul>
+						</li>
+						<li>自分のブラウザだけうまく動かない<ul>
+							<li>推奨ブラウザはchrome系です．</li>
+							<li>但し，うまく動かないブラウザもベストエフォートで対応します．ページ最下部のコメント欄かGithubのissueでお教え下さい．<br /><br /></li>
+						</ul></li>
+					</ul>
+				</p>
+			</div>
+		</div>
+		<br /><br />
+    </body>
+</html>

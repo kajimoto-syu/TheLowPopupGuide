@@ -1,22 +1,69 @@
 <html>
-	<head><title>TheLowPopup</title></head>
+	<head>
+		<title>TheLowPopup</title>
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' disqus.com thelow-popup-unofficial.disqus.com *.disquscdn.com links.services.disqus.com; script-src 'self' 'unsafe-inline' thelow-popup-unofficial.disqus.com c.disquscdn.com www.google-analytics.com; style-src 'self' 'unsafe-inline' c.disquscdn.com; img-src 'self' *; media-src 'self' ; frame-src disqus.com;" />
+		<link rel="stylesheet" href="./css/common.css">
+	</head>
 	<body>
 		<h1>The Low [非公式] ポップアップガイド</h1>
 		<h3>このツールについて</h3>
-		<p>小型のウィンドウでDynMap(フィールドマップ)やWikiを表示するツールです．Minecraftの画面の上にかぶせて表示することで，ミニマップのように使うことができます．</p>
+		<p>minecraft(java版)の<a href="https://wikiwiki.jp/thelow/">Thelow</a>サーバのDynMap(フィールドマップ)やWikiを小型のウィンドウで表示するツールです．<br />Minecraftの画面の上にかぶせて表示することで，ミニマップのように使うことができます．</p>
 		<h3>注意事項</h3>
-		<p>本プログラムはブラウザ上で動作します．利用時にはjavascriptを有効にして下さい．<br />ホスティングはGithub Pagesで行われています．ソースコードは本サイトのリポジトリ「<a href="https://github.com/kajimoto-syu/TheLowPopupGuide">kajimoto-syu/TheLowPopupGuide</a>」を確認下さい．<br />恐らくDynMapの仕様で，トラッキングできるMCIDはログイン中のアカウントに限定されるようです．ログイン中の他人のトラッキングは出来ないようですので注意して下さい．</p>
-		<h3>使い方</h3>
 		<p>
-			下の「ポップアップガイド起動」ボタンを押して下さい．現在，ユーザのトラッキング機能のみ実装されています．GPSのアイコンをクリックすることで，追跡機能をON/OFFすることが出来ます．追跡対象はMCIDで指定する必要が有ります．GPSアイコンにカーソルを持っていくと「Steve」という文字が表示されるので，こちらをクリックして自身のMCIDを入力して下さい．
+			<ul>
+				<li>本ツールは<b>【非公式】</b>です．(マップは公式から流用)</li>
+				<li>本システムの利用条件は本家(Thelow)を準拠致します．<a href="https://portal.eximradar.jp/?page_id=47">EXR-Network 利用規約</a>をご確認下さい．</li>
+				<li>本プログラムはjavascriptを使用します．</li>
+				<li>一部機能は不完全なまま実装されています．ご了承下さい．</li>
+				<li>感想・意見・ご不明な点等は，お気軽に画面最下部のコメント欄へお願いします．(disqusのアカウント登録はしなくて結構です)</li>
+			</ul>
 		</p>
-		<h3>⇣起動⇣</h3>
-		<a onclick="popMap()">ポップアップガイド起動</button>
+
+		<h3>ツール起動</h3>
+		<a onclick="popMap()" class="grad-btn-style" style="width: 200px; display: block;background-color: #E59100!important; color: #fff!important;">ポップアップガイド起動</a>
 		<script language="JavaScript">
 		function popMap(){
 			// プレイヤー追従設定
 			w = window.open("./map.html","Newwindow","width=280,height=480");
 		}
 		</script>
+		<h3>実装済み機能</h3>
+		<p>
+			現在以下機能を実装済みです．
+			<ul>
+				<li>マップ表示</li>
+				<li>現在地追跡</li>
+				<li>wiki検索</li>
+			</ul>
+		</p>
+		<h3>使い方・困ったとき</h3>
+		<a href="./how-to-use.html" class="grad-btn-style" style="width: 150px; display: block;">how-to-use.htmlへ</a>
+		<h3>リンク</h3>
+		<ul>
+			<li><a href="https://github.com/kajimoto-syu/TheLowPopupGuide">ソースコード(Github)</a></li>
+			<li><a href="http://www.kajimoto.ch/">開発者HP</a></li>
+			<li><a href="https://github.com/kajimoto-syu/TheLowPopupGuide/issues/">機能提案フォーム(Github)</a></li>
+		</ul>
+		<h3>コメント欄(感想・機能提案等はお気軽にこちらへ！)</h3>
+		<div id="disqus_thread"></div>
+		<script>
+			/**
+			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+			/*
+			var disqus_config = function () {
+			this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+			this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+			*/
+			(function() { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = 'https://thelow-popup-unofficial.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<script id="dsq-count-scr" src="https://thelow-popup-unofficial.disqus.com/count.js" async></script>
 	</body>
 </html>
