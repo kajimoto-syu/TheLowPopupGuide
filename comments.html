@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>コメント欄 | Thelow非公式ポップアップツール</title>
+		<link rel="stylesheet" href="./css/common.css">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' disqus.com thelow-popup-unofficial.disqus.com *.disquscdn.com links.services.disqus.com realtime.services.disqus.com; script-src 'self' 'unsafe-inline' thelow-popup-unofficial.disqus.com c.disquscdn.com realtime.services.disqus.com www.google-analytics.com; style-src 'self' 'unsafe-inline' c.disquscdn.com; img-src 'self' *; media-src 'self' ; frame-src disqus.com;" />
+    </head>
+    <body>
+        <a id="returnLink" href="./index.html">TOPページへもどる</a>
+        <script language="JavaScript">
+            // 自分自身が親(iframeで読み込まれていない場合)
+            if(window != window.parent) {
+                document.getElementById('returnLink').href = './how-to-use.html';
+                document.getElementById('returnLink').innerHTML = '使い方ページへ戻る';
+            }
+        </script>
+        <h1>コメント欄 | The Low [非公式] ポップアップガイド</h1>
+		<div id="disqus_thread"></div>
+		<script>
+			/**
+			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+			
+			var disqus_config = function () {
+			this.page.url = "http://thelow.kajimoto.ch/forum";  // Replace PAGE_URL with your page's canonical URL variable
+			this.page.identifier = "TOP"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+			
+			(function() { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = 'https://thelow-popup-unofficial.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<script id="dsq-count-scr" src="https://thelow-popup-unofficial.disqus.com/count.js" async></script>
+    </body>
+</html>

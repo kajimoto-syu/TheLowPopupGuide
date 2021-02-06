@@ -5,14 +5,14 @@
 		<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' disqus.com thelow-popup-unofficial.disqus.com *.disquscdn.com links.services.disqus.com; script-src 'self' 'unsafe-inline' thelow-popup-unofficial.disqus.com c.disquscdn.com www.google-analytics.com; style-src 'self' 'unsafe-inline' c.disquscdn.com; img-src 'self' *; media-src 'self' ; frame-src disqus.com;" />
     </head>
     <body>
-        <a id="returnLink" href="http://thelow.kajimoto.ch/">TOPページへもどる</a>
+		<a id="returnLink" href="./index.html">TOPページへもどる</a>
+		
         <script language="JavaScript">
-            // 自分自身が親(iframeで読み込まれていない場合)
             if(window != window.parent) {
                 document.getElementById('returnLink').href = 'http://thelow.eximradar.jp/';
-                document.getElementById('returnLink').innerHTML = 'マップへ戻る';
-            }
-        </script>
+				document.getElementById('returnLink').innerHTML = 'マップへ戻る';
+			}
+		</script>
         <h1>使い方 | The Low [非公式] ポップアップガイド</h1>
         <h3>機能一覧・使い方</h3>
 		<div class="grad-wrap">
@@ -45,6 +45,9 @@
 								<li>wikiページから戻りたいときは，検索バー右のマップアイコンを押すことで戻れます．<br /><br /></li>
 							</ul>
 						</li>
+						<li>それでも解決しない場合<ul>
+							<li>テスト段階の機能の可能性があります．恐れ入りますが，<a class="to-comments" href="./index.html#comments">コメント欄</a>を確認・投稿下さい．ベストエフォートで対応します．</li>
+						</ul></li>
 					</ul>
 				</p>
 			</div>
@@ -70,31 +73,32 @@
 							<li>推奨ブラウザはchrome系です．</li>
 							<li>但し，うまく動かないブラウザもベストエフォートで対応します．<br /><br /></li>
 						</ul></li>
+						<li>それでも解決しない場合<ul>
+							<li>[使い方がわからない場合] <a href="./index.html#comments">コメント欄</a>を確認・投稿下さい．ベストエフォートで対応致します．</li>
+							<li>[機能提案・バグ報告] <a href="./index.html#comments">コメント欄</a>を確認・投稿下さい．また，jsでのコーディング経験のある方はPull Requestも受け付けております．Githubの<a href="https://github.com/kajimoto-syu/TheLowPopupGuide/issues">issueページ</a>をご確認下さい．</li>
+							<li>[権利侵害・トラブル] <a href="http://www.kajimoto.ch/">開発者HP</a>に記載のメールアドレスに直接ご連絡下さい．</li>
+						</ul></li>
 					</ul>
 				</p>
 			</div>
 		</div>
 		<br /><br />
-		<h3>コメント欄(感想・機能提案等はお気軽にこちらへ！)</h3>
-		<div id="disqus_thread"></div>
-		<script>
-			/**
-			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-			
-			var disqus_config = function () {
-			this.page.url = "http://thelow.kajimoto.ch";  // Replace PAGE_URL with your page's canonical URL variable
-			this.page.identifier = "TOP"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-			};
-			
-			(function() { // DON'T EDIT BELOW THIS LINE
-			var d = document, s = d.createElement('script');
-			s.src = 'https://thelow-popup-unofficial.disqus.com/embed.js';
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-			})();
-		</script>
-		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-		<script id="dsq-count-scr" src="https://thelow-popup-unofficial.disqus.com/count.js" async></script>
+
+
+        <script language="JavaScript">
+            if(window != window.parent) {
+				var linkItems = document.getElementsByTagName('a');
+				for(var i=0; i < linkItems.length; i++) {
+					var element = linkItems[i];
+					if(element.getAttribute("href") == "./index.html#comments"){
+						element.setAttribute("href", "./comments.html");
+					} else if (element.getAttribute("href") == "http://thelow.eximradar.jp/") {
+						// break
+					} else {
+						element.removeAttribute("href");
+					}
+				}
+            }
+        </script>
     </body>
 </html>

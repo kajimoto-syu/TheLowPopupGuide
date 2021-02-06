@@ -1,15 +1,15 @@
 <html>
 	<head>
 		<title>TheLowPopup</title>
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' disqus.com thelow-popup-unofficial.disqus.com *.disquscdn.com links.services.disqus.com; script-src 'self' 'unsafe-inline' thelow-popup-unofficial.disqus.com c.disquscdn.com www.google-analytics.com; style-src 'self' 'unsafe-inline' c.disquscdn.com; img-src 'self' *; media-src 'self' ; frame-src disqus.com;" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' disqus.com thelow-popup-unofficial.disqus.com *.disquscdn.com links.services.disqus.com realtime.services.disqus.com; script-src 'self' 'unsafe-inline' thelow-popup-unofficial.disqus.com c.disquscdn.com realtime.services.disqus.com www.google-analytics.com; style-src 'self' 'unsafe-inline' c.disquscdn.com; img-src 'self' *; media-src 'self' ; frame-src disqus.com;" />
 		<link rel="stylesheet" href="./css/common.css">
 	</head>
 	<body>
 		<h1>The Low [非公式] ポップアップガイド</h1>
 		<img src="./src/image1.png" style="max-width: 720px;width: fit-content;" />
-		<h3>このツールについて</h3>
+		<h3 id="about-this">このツールについて</h3>
 		<p>minecraft(java版)の<a href="https://wikiwiki.jp/thelow/">Thelow</a>サーバのDynMap(フィールドマップ)やWikiを小型のウィンドウで表示するツールです．<br />Minecraftの画面の上に重ねて表示することで，ミニマップのように使うことができます．</p>
-		<h3>注意事項</h3>
+		<h3 id="announce">注意事項</h3>
 		<p>
 			<ul>
 				<li>本ツールは<b>【非公式】</b>です．公式への問い合わせはお控え下さい．(但し，マップとダンジョンピンは公式を流用)</li>
@@ -21,7 +21,7 @@
 			</ul>
 		</p>
 
-		<h3>ツール起動</h3>
+		<h3 id="start">ツール起動</h3>
 		<a onclick="popMap()" class="grad-btn-style" style="width: 200px; display: block;background-color: #E59100!important; color: #fff!important;">ポップアップガイド起動</a>
 		<script language="JavaScript">
 		function popMap(){
@@ -29,7 +29,7 @@
 			w = window.open("./map.html","Newwindow","width=280,height=480");
 		}
 		</script>
-		<h3>実装済み機能</h3>
+		<h3 id="future">実装済み機能</h3>
 		<p>
 			現在以下機能を実装済みです．
 			<ul>
@@ -38,15 +38,15 @@
 				<li>wiki検索</li>
 			</ul>
 		</p>
-		<h3>使い方・困ったとき</h3>
-		<a href="./how-to-use.html" class="grad-btn-style" style="width: 150px; display: block;">how-to-use.htmlへ</a>
-		<h3>リンク</h3>
+		<h3 id="how-to-use">使い方・困ったとき</h3>
+		<a href="./how-to-use.html" class="grad-btn-style" style="width: 250px; display: block;">使い方・トラブルシュートページ</a><br />
+		<h3 id="links">リンク</h3>
 		<ul>
 			<li><a href="https://github.com/kajimoto-syu/TheLowPopupGuide">ソースコード(Github)</a></li>
 			<li><a href="http://www.kajimoto.ch/">EXR-Network ポータルページ</a></li>
 			<li><a href="http://www.kajimoto.ch/">非公式ポップアップガイド開発者HP</a></li>
 		</ul>
-		<h3>コメント欄(感想・機能提案等はお気軽にこちらへ！)</h3>
+		<h3 id="comments">コメント欄(感想等お気軽にご利用下さい！)</h3>
 		<div id="disqus_thread"></div>
 		<script>
 			/**
