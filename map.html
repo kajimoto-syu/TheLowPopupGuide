@@ -206,6 +206,8 @@
 			var dung = dungNameList.indexOf(q);
 			mapIframe.location.href = "http://thelow.eximradar.jp/?x=" + dungeronsList[dung]["x"] + "&y=" + dungeronsList[dung]["y"] + "&z=" + dungeronsList[dung]["z"] + "&zoom=4";
 			console.log("http://thelow.eximradar.jp/?x=" + dungeronsList[dung]["x"] + "&y=" + dungeronsList[dung]["y"] + "&z=" + dungeronsList[dung]["z"] + "&zoom=4");
+			trackingToggleVal = false;
+			document.getElementById("trackingToggle").src = "./src/ui/gpsOff.svg";
 		}
 
 		function goTo(url){
