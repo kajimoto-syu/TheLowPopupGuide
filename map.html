@@ -204,7 +204,8 @@
 		function searchByWiki(){
 			var q = document.getElementById("searchInput").value;
 			var dung = dungNameList.indexOf(q);
-			mapIframe.location.href = "http://thelow.eximradar.jp/?x=" + dungeronsList[dung]["x"] + "&y=" + dungeronsList[dung]["y"] + "&zoom=4";
+			mapIframe.location.href = "http://thelow.eximradar.jp/?x=" + dungeronsList[dung]["x"] + "&y=" + dungeronsList[dung]["y"] + "&z=" + dungeronsList[dung]["z"] + "&zoom=4";
+			console.log("http://thelow.eximradar.jp/?x=" + dungeronsList[dung]["x"] + "&y=" + dungeronsList[dung]["y"] + "&z=" + dungeronsList[dung]["z"] + "&zoom=4");
 		}
 
 		function goTo(url){
