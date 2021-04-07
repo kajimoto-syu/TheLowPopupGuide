@@ -129,12 +129,12 @@
 		<script language="JavaScript">
 		
 		var mapIframe = frames[0];
+		var dungNameList = [];
+		for(const p of dungeronsList){
+			dungNameList.push(p['name']);
+		}
 
 		function startSuggest() {
-			var dungNameList = [];
-			for(p in dungeronsList){
-				dungNameList.push = p['name'];
-			}
 			new Suggest.Local(
 				"searchInput",    // 入力のエレメントID
 				"suggest", // 補完候補を表示するエリアのID
@@ -197,15 +197,8 @@
 
 		function searchByWiki(){
 			var q = document.getElementById("searchInput").value;
-			var inArray = function(searchValue, arrayData) {
-    			if (typeof searchValue === 'undefined' || typeof arrayData !== 'object') return -1;
-    			for (var key in arrayData) {
-        			if (arrayData[key] === searchValue) return key;
-    			}
-				return -1;
-			};
-			var index = inArray(q,dungeronsList) - 1;
-			mapIframe.location.href = "https://wikiwiki.jp/thelow/?x=" + dungeronsList[index]['x'] + "&y=" + dungeronsList[index]['y'];
+			var dung = dungNameList.indexOf(q);
+			mapIframe.location.href = "http://thelow.eximradar.jp/?x=" + dungeronsList[dung]["x"] + "&y=" + dungeronsList[dung]["y"] + "&zoom=4";
 		}
 
 		function goTo(url){
