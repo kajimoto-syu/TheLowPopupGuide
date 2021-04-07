@@ -124,16 +124,21 @@
 		</div>
 		
 		<script src="info/wikiPages.js"></script>
+		<script src="info/dungerons.js"></script>
 		<script src="js/suggest.js"></script>
 		<script language="JavaScript">
 		
 		var mapIframe = frames[0];
 
 		function startSuggest() {
-		new Suggest.Local(
+			var dungNameList = [];
+			for(p in dungeronsList){
+				dungNameList.push = q['name'];
+			}
+			new Suggest.Local(
 				"searchInput",    // 入力のエレメントID
 				"suggest", // 補完候補を表示するエリアのID
-				wikiPageList,      // 補完候補の検索対象となる配列
+				dungNameList,      // 補完候補の検索対象となる配列
 				{dispMax: 10, interval: 1000}); // オプション
 		}
 
@@ -192,7 +197,15 @@
 
 		function searchByWiki(){
 			var q = document.getElementById("searchInput").value;
-			mapIframe.location.href = "https://wikiwiki.jp/thelow/"+q;
+			var inArray = function(searchValue, arrayData) {
+    			if (typeof searchValue === 'undefined' || typeof arrayData !== 'object') return -1;
+    			for (var key in arrayData) {
+        			if (arrayData[key] === searchValue) return key;
+    			}
+				return -1;
+			};
+			var index = inArray(q,dungeronsList) - 1;
+			mapIframe.location.href = "https://wikiwiki.jp/thelow/?x=" + dungeronsList[index]['x'] + "&y=" + dungeronsList[index]['y'];
 		}
 
 		function goTo(url){
