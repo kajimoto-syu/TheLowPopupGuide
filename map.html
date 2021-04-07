@@ -77,11 +77,18 @@
 			#suggest div.over{ /* マウスオーバ時のスタイル */
 				background-color: #99CCFF;
 			}
+			#targetPin{
+				position:fixed;
+				color: #FFFFFF;
+				top: 50%;
+				left: 50%;
+			}
 		</style>
 	</head>
 	<body>
 		<!-- http://thelow.eximradar.jp/ -->
 		<iframe id="mapIframe" sandbox="allow-scripts allow-same-origin allow-modals" name="mapIframe" style="height: 100%;width: 100%; border: 0;"></iframe>
+		<span id="targetPin">+</span>
 		<div id="topBar">
 			<table>
 				<tr>
@@ -107,7 +114,6 @@
 						</td>
 					</tr>
 			</table>
-			
 		</div>
 		<div id="bottomBar">
 			<table>
@@ -131,7 +137,7 @@
 		var mapIframe = frames[0];
 		var dungNameList = [];
 		for(const p of dungeronsList){
-			dungNameList.push(p['name']);
+			dungNameList.push("[Lv." + p['difficulty'] + "] " + p['name']);
 		}
 
 		function startSuggest() {
